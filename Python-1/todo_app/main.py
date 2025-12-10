@@ -24,11 +24,28 @@
 #     print("Next ...")
 
 # multiple user input in a list
+# user_prompt = "Enter a todo: "
+# todos = []
+# while True:
+#     todo = input(user_prompt)
+#     todos.append(todo)
+#     print(todos)
+#     print("Next ...")
+
+# user input conditions
 user_prompt = "Enter a todo: "
 todos = []
 while True:
-    todo = input(user_prompt)
-    todos.append(todo)
-    print(todos)
-    print("Next ...")
+    user_action = input("Type add, show or exit: ")
+    user_action = user_action.strip()
+    match user_action:
+        case 'add':
+            todo = input(user_prompt)
+            todos.append(todo)
+        case 'show' | 'display':
+            print(todos)
+        case 'exit':
+            break
+        case _:
+            print('Please enter correct option ... ')
 
