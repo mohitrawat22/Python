@@ -64,7 +64,7 @@
 user_prompt = "Enter a todo: "
 todos = []
 while True:
-    user_action = input("Type add, show or exit: ")
+    user_action = input("Type add, show , edit, complete or exit: ")
     user_action = user_action.strip()
     match user_action:
         case 'add':
@@ -74,11 +74,14 @@ while True:
             for index, item in enumerate(todos):
                 # print(index, '-', item)
                 # f-string
-                row = f"{index}-{item}"
+                row = f"{index+1}-{item}"
                 print(row)
         case 'edit':
             index = int(input("Enter the index of todo to edit: "))
             todos[index-1] = input("Enter new todo: ")
+        case 'complete':
+            todo_num = int(input('Number of todo to complete: '))
+            todos.pop(todo_num-1)
         case 'exit':
             break
         case _:
