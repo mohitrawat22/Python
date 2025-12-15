@@ -44,6 +44,9 @@ while True:
             todos.append(todo)
         case 'show' | 'display':
             print(todos)
+        case 'edit':
+            index = int(input("Enter the index of todo to edit: "))
+            todos[index-1] = input("Enter new todo: ")
         case 'exit':
             break
         case _:
