@@ -72,7 +72,10 @@ while True:
             todos.append(todo)
         case 'show' | 'display':
             for index, item in enumerate(todos):
-                print(index, '-', item)
+                # print(index, '-', item)
+                # f-string
+                row = f"{index}-{item}"
+                print(row)
         case 'edit':
             index = int(input("Enter the index of todo to edit: "))
             todos[index-1] = input("Enter new todo: ")
