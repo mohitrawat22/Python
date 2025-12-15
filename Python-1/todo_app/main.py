@@ -53,7 +53,30 @@
 #             print('Please enter correct option ... ')
 
 # tuples
-words = ('a', 'b', 'c', 'd')
-print(words[2])
+# words = ('a', 'b', 'c', 'd')
+# print(words[2])
 # below will cause exception because tuples cannot be modified
 # words[2] = 'm'
+
+# print index and item using enumerate
+# for index, item in enumerate(list1):
+#     print(index, item)
+user_prompt = "Enter a todo: "
+todos = []
+while True:
+    user_action = input("Type add, show or exit: ")
+    user_action = user_action.strip()
+    match user_action:
+        case 'add':
+            todo = input(user_prompt)
+            todos.append(todo)
+        case 'show' | 'display':
+            for index, item in enumerate(todos):
+                print(index, '-', item)
+        case 'edit':
+            index = int(input("Enter the index of todo to edit: "))
+            todos[index-1] = input("Enter new todo: ")
+        case 'exit':
+            break
+        case _:
+            print('Please enter correct option ... ')
