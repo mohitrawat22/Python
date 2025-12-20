@@ -88,24 +88,70 @@
 #             print('Please enter correct option ... ')
 
 # read/write todo list in a file
+# user_prompt = "Enter a todo: "
+# while True:
+#     user_action = input("Type add, show , edit, complete or exit: ")
+#     user_action = user_action.strip()
+#     match user_action:
+#         case 'add':
+#             todo = input(user_prompt) + "\n"
+
+#             file = open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r')
+#             todos = file.readlines()
+#             file.close()
+            
+#             todos.append(todo)
+
+#             file = open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'w')
+#             file.writelines(todos)
+#             file.close()
+#         case 'show' | 'display':
+#             file = open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r')
+#             todos = file.readlines()
+#             file.close()
+#             # new_todos = [item.strip() for item in todos]
+#             # for index, item in enumerate(new_todos):
+#             #     row = f"{index+1}-{item}"
+#             #     print(row)
+#             for index, item in enumerate(todos):
+#                 item = item.strip()
+#                 row = f"{index+1}-{item}"
+#                 print(row)
+#         case 'edit':
+#             index = int(input("Enter the index of todo to edit: "))
+#             todos[index-1] = input("Enter new todo: ")
+#         case 'complete':
+#             todo_num = int(input('Number of todo to complete: '))
+#             todos.pop(todo_num-1)
+#         case 'exit':
+#             break
+#         case _:
+#             print('Please enter correct option ... ')
+
+# read/write todo list in a file
+# usage of "with"
 user_prompt = "Enter a todo: "
 while True:
     user_action = input("Type add, show , edit, complete or exit: ")
     user_action = user_action.strip()
     match user_action:
         case 'add':
+
             todo = input(user_prompt) + "\n"
-            file = open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+
+            with open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r') as file:
+                todos = file.readlines()
+            
             todos.append(todo)
-            file = open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'w')
-            file.writelines(todos)
-            file.close()
+
+            with open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'w') as file:
+                file.writelines(todos)
+
         case 'show' | 'display':
-            file = open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            
+            with open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r') as file:
+                todos = file.readlines()
+
             # new_todos = [item.strip() for item in todos]
             # for index, item in enumerate(new_todos):
             #     row = f"{index+1}-{item}"
@@ -114,13 +160,29 @@ while True:
                 item = item.strip()
                 row = f"{index+1}-{item}"
                 print(row)
+        
         case 'edit':
+
             index = int(input("Enter the index of todo to edit: "))
-            todos[index-1] = input("Enter new todo: ")
+            with open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r') as file:
+                todos = file.readlines()
+            todos[index-1] = input("Enter new todo: ") + "\n"
+            with open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'w') as file:
+                file.writelines(todos)
+        
         case 'complete':
+
             todo_num = int(input('Number of todo to complete: '))
+            with open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r') as file:
+                todos = file.readlines()
+            todo_to_remove = todos[todo_num-1].strip()
             todos.pop(todo_num-1)
+            with open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'w') as file:
+                file.writelines(todos)
+                print(f'Todo {todo_to_remove} was removed from the list.')
+
         case 'exit':
             break
+
         case _:
             print('Please enter correct option ... ')
