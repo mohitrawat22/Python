@@ -1,4 +1,4 @@
-# usage of if, instead of case
+# usage of if-else, instead of case
 user_prompt = "Enter a todo: "
 while True:
     user_action = input("Type add, show , edit, complete or exit: ")
