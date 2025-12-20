@@ -95,15 +95,15 @@ while True:
     match user_action:
         case 'add':
             todo = input(user_prompt) + "\n"
-            file = open('todos.txt', 'r')
+            file = open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r')
             todos = file.readlines()
             file.close()
             todos.append(todo)
-            file = open('todos.txt', 'w')
+            file = open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'w')
             file.writelines(todos)
             file.close()
         case 'show' | 'display':
-            file = open('todos.txt', 'r')
+            file = open('E:/Projects/Python/Python-1/todo_app/todos.txt', 'r')
             todos = file.readlines()
             file.close()
             # new_todos = [item.strip() for item in todos]
