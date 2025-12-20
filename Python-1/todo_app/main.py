@@ -61,19 +61,53 @@
 # print index and item using enumerate
 # for index, item in enumerate(list1):
 #     print(index, item)
+# user_prompt = "Enter a todo: "
+# todos = []
+# while True:
+#     user_action = input("Type add, show , edit, complete or exit: ")
+#     user_action = user_action.strip()
+#     match user_action:
+#         case 'add':
+#             todo = input(user_prompt)
+#             todos.append(todo)
+#         case 'show' | 'display':
+#             for index, item in enumerate(todos):
+#                 # print(index, '-', item)
+#                 # f-string
+#                 row = f"{index+1}-{item}"
+#                 print(row)
+#         case 'edit':
+#             index = int(input("Enter the index of todo to edit: "))
+#             todos[index-1] = input("Enter new todo: ")
+#         case 'complete':
+#             todo_num = int(input('Number of todo to complete: '))
+#             todos.pop(todo_num-1)
+#         case 'exit':
+#             break
+#         case _:
+#             print('Please enter correct option ... ')
+
+# read/write todo list in a file
 user_prompt = "Enter a todo: "
-todos = []
 while True:
     user_action = input("Type add, show , edit, complete or exit: ")
     user_action = user_action.strip()
     match user_action:
         case 'add':
-            todo = input(user_prompt)
+            todo = input(user_prompt) + "\n"
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
             todos.append(todo)
+            file = open('todos.txt', 'w')
+            file.writelines(todos)
+            file.close()
         case 'show' | 'display':
-            for index, item in enumerate(todos):
-                # print(index, '-', item)
-                # f-string
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
+            new_todos = [item.strip() for item in todos]
+            for index, item in enumerate(new_todos):
                 row = f"{index+1}-{item}"
                 print(row)
         case 'edit':
